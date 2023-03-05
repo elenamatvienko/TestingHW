@@ -20,12 +20,13 @@ public class UserTest {
 
     @Test
     public void shouldTrowsExceptionLoginEqualEmailUser() {
-        Assertions.assertNotEquals(CORRECT_LOGIN, CORRECT_EMAIL);
+
+        Assertions.assertThrows(LoginEqualEmailException.class, () -> new User(CORRECT_LOGIN, CORRECT_LOGIN));
     }
 
     @Test
     public void shouldTrowsExceptionCreatEmailUser() {
-        Assertions.assertThrows(IllegalEmailException.class, () -> new User(CORRECT_EMAIL, ILLEGAL_EMAIL));
+        Assertions.assertThrows(IllegalEmailException.class, () -> new User(CORRECT_LOGIN, ILLEGAL_EMAIL));
     }
 
     @Test
@@ -34,4 +35,6 @@ public class UserTest {
         Assertions.assertNull(user.getLogin());
         Assertions.assertNull(user.getEmail());
     }
+
+
 }
